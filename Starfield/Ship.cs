@@ -17,8 +17,9 @@ namespace Starfield
         Vector2 position;
         private int _width;
         private int _height;
-        float size = 40;
-        float speed = 500;
+        
+        float shipSize = 40;
+        float shipSpeed = 500;
         float shotSpeed = 600;
 
         int shotsFired = 0;
@@ -39,11 +40,11 @@ namespace Starfield
         {
             if (IsKeyDown(KeyboardKey.Left))
             {
-                position.X = Math.Max(size / 2, position.X - speed *frameTime);
+                position.X = Math.Max(shipSize / 2, position.X - shipSpeed *frameTime);
             }
             else if (IsKeyDown(KeyboardKey.Right))
             {
-                position.X = Math.Min(_width - (size / 2), position.X + speed*frameTime);
+                position.X = Math.Min(_width - (shipSize / 2), position.X + shipSpeed*frameTime);
             }
 
 
@@ -70,9 +71,9 @@ namespace Starfield
         public override void Draw()
         {
             DrawTriangle(
-                new Vector2(position.X + size / 2, position.Y + size),
+                new Vector2(position.X + shipSize / 2, position.Y + shipSize),
                 new Vector2(position.X, position.Y),
-                new Vector2(position.X - size / 2, position.Y + size),
+                new Vector2(position.X - shipSize / 2, position.Y + shipSize),
                 Color.Red
             );
 
