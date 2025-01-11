@@ -21,6 +21,8 @@ namespace Starfield
         float speed = 500;
         float shotSpeed = 600;
 
+        int shotsFired = 0;
+
         public Ship()
         {
             projectiles = new Vector2[20];
@@ -56,7 +58,8 @@ namespace Starfield
                 if (!fired && IsKeyPressed(KeyboardKey.Space) && projectiles[i].Y<=0)
                 {
                     fired = true;
-                    projectiles[i].Y = position.Y - size/2;
+                    shotsFired++;
+                    projectiles[i].Y = position.Y + 4f;
                     projectiles[i].X = position.X;
                 }
             }
@@ -80,6 +83,8 @@ namespace Starfield
                     DrawCircle((int)projectiles[i].X, (int)projectiles[i].Y, 4.0f, Color.Green);
                 }
             }
+
+            DrawText($"Shots fired: {shotsFired}", 10, _height-25, 20, Color.Magenta);
         }
     }
 }

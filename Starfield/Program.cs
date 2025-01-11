@@ -39,13 +39,12 @@ public class BasicWindow
         const int screenHeight = 900;
 
         SetConfigFlags(ConfigFlags.VSyncHint);
-
         InitWindow(screenWidth, screenHeight, "Stars");
 
 
 
 
-
+        // construct layers
         //--------------------------------------------------------------------------------------
         var layers = new List<Layer>()
         {
@@ -67,20 +66,28 @@ public class BasicWindow
         while (!WindowShouldClose())
         {
             var frameTime = GetFrameTime();
+
+            //crude frame limiter?
+            //if (frameTime < 1f / 60f)
+            //{
+            //    Thread.Sleep((int)(1f / 60f - frameTime)*1000);
+            //}
+
             // Update
             //----------------------------------------------------------------------------------
-            // TODO: Update your variables here
-            //----------------------------------------------------------------------------------
+            // update each layer
             foreach (var layer in layers)
             {
                 layer.Update(frameTime);
             }
+            //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
             ClearBackground(Color.Black);
 
+            //draw each layer
             foreach (var layer in layers)
             {
                 layer.Draw();
